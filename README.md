@@ -5,6 +5,10 @@ Convert image array to mp4
 
 This helper class takes an array of UIImages and will convert them to an mp4 at your desired path, size, and framerate
 
+This is all you need!
+```
+[HJImagesToVideo videoFromImages:imageArray ToPath:path WithFPS:10 WithCallbackBlock:nil];
+```
 Example usage:
 
 ```
