@@ -23,30 +23,20 @@
 }
 +(void)saveVideoToPhotosWithImages:(NSArray *)images WithCallbackBlock:(void (^)(void))callbackBlock{
     NSString *tempPath = [NSHomeDirectory() stringByAppendingPathComponent:
-                      [NSString stringWithFormat:@"Documents/temp.mp4"]];
-
-    ALAssetsLibrary* library = [[ALAssetsLibrary alloc]init];
+                      [NSString stringWithFormat:@"temp.mp4"]];
+    [HJImagesToVideo videoFromImages:images ToPath:tempPath WithFPS:10 WithCallbackBlock:^{
+        UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
+        callbackBlock();
+    }];
     
-    NSURL * tempURL = [NSURL URLWithString:@"Documents/temp.mp4"];
-    
-//    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:tempURL])
-//    {
-        [HJImagesToVideo videoFromImages:images ToPath:tempPath WithFPS:10 WithCallbackBlock:^{
-            [library writeVideoAtPathToSavedPhotosAlbum:tempURL completionBlock:^(NSURL *assetURL, NSError *error)
-             {
-                 if (error){
-                     NSLog(@"%@", error);
-                 }
-                 callbackBlock();
-
-             }];
-        }];
-//    }
-
-        
 }
 +(void)saveVideoToPhotosWithImages:(NSArray *)images withSize:(CGSize)size WithCallbackBlock:(void (^)(void))callbackBlock{
-    
+    NSString *tempPath = [NSHomeDirectory() stringByAppendingPathComponent:
+                          [NSString stringWithFormat:@"temp.mp4"]];
+    [HJImagesToVideo videoFromImages:images ToPath:tempPath withSize:size WithFPS:10 WithCallbackBlock:^{
+        UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
+        callbackBlock();
+    }];
     
     callbackBlock();
     
