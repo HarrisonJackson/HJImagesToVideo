@@ -19,8 +19,8 @@
 
 
 
-+(void)videoFromImages:(NSArray *)images ToPath:(NSString *)path WithCallbackBlock:(void (^)(void))callbackBlock;
-+(void)videoFromImages:(NSArray *)images  ToPath:(NSString *)path withSize:(CGSize)size WithCallbackBlock:(void (^)(void))callbackBlock;
++(void)videoFromImages:(NSArray *)images ToPath:(NSString *)path WithFPS:(int)fps WithCallbackBlock:(void (^)(void))callbackBlock;
++(void)videoFromImages:(NSArray *)images  ToPath:(NSString *)path withSize:(CGSize)size WithFPS:(int)fps WithCallbackBlock:(void (^)(void))callbackBlock;
 +(void)saveVideoToPhotosWithImages:(NSArray *)images WithCallbackBlock:(void (^)(void))callbackBlock;
 +(void)saveVideoToPhotosWithImages:(NSArray *)images withFrame:(CGSize)size WithCallbackBlock:(void (^)(void))callbackBlock;
 

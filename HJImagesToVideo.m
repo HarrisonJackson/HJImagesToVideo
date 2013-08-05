@@ -10,14 +10,14 @@
 
 @implementation HJImagesToVideo
 
-+(void)videoFromImages:(NSArray *)images ToPath:(NSString *)path WithCallbackBlock:(void (^)(void))callbackBlock{
-    [HJImagesToVideo writeImageAsMovie:images toPath:path size:CGSizeMake(480, 320) duration:1];
++(void)videoFromImages:(NSArray *)images ToPath:(NSString *)path WithFPS:(int)fps WithCallbackBlock:(void (^)(void))callbackBlock{
+    [HJImagesToVideo writeImageAsMovie:images toPath:path size:CGSizeMake(480, 320) fps:fps];
     
     
     callbackBlock();
 }
-+(void)videoFromImages:(NSArray *)images  ToPath:(NSString *)path withSize:(CGSize)size WithCallbackBlock:(void (^)(void))callbackBlock{
-    [HJImagesToVideo writeImageAsMovie:images toPath:path size:size duration:1];
++(void)videoFromImages:(NSArray *)images  ToPath:(NSString *)path withSize:(CGSize)size WithFPS:(int)fps WithCallbackBlock:(void (^)(void))callbackBlock{
+    [HJImagesToVideo writeImageAsMovie:images toPath:path size:size fps:fps];
     
     callbackBlock();
 }
@@ -34,26 +34,34 @@
     
 }
 
-- (void)saveMovieToLibrary
++ (void)test
 {
+    // Modify this array to use your test images 
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"Documents/movie.mp4"]];
     NSArray * testImageArray = [[NSArray alloc] initWithObjects:
-                                [UIImage imageNamed:@"add_ar.png"],
-                                [UIImage imageNamed:@"add_ja.png"],
-                                [UIImage imageNamed:@"add_ru.png"],
-                                [UIImage imageNamed:@"add_ru.png"],
-                                [UIImage imageNamed:@"add_ar.png"],
-                                [UIImage imageNamed:@"add_ja.png"],
-                                [UIImage imageNamed:@"add_ru.png"],
-                                [UIImage imageNamed:@"add_ar.png"],
-                                [UIImage imageNamed:@"add_en.png"], nil];
+                                [UIImage imageNamed:@"frame1.png"],
+                                [UIImage imageNamed:@"frame2.png"],
+                                [UIImage imageNamed:@"frame3.png"],
+                                [UIImage imageNamed:@"frame4.png"],
+                                [UIImage imageNamed:@"frame5.png"],
+                                [UIImage imageNamed:@"frame6.png"],
+                                [UIImage imageNamed:@"frame7.png"],
+                                [UIImage imageNamed:@"frame8.png"],
+                                [UIImage imageNamed:@"frame9.png"], nil];
     
-    //[self writeImageAsMovie:testImageArray toPath:path size:CGSizeMake(480, 320) duration:1];
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:
+                      [NSString stringWithFormat:@"Documents/temp.mp4"]];
+    [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
+    [HJImagesToVideo videoFromImages:testImageArray ToPath:path WithFPS:10 WithCallbackBlock:^{
+        NSLog(@"Success");
+        
+    }];
+
 }
 
 
-+(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path size:(CGSize)size duration:(int)duration
++(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path size:(CGSize)size fps:(int)fps
 {
     NSLog(@"%@", path);
     NSError *error = nil;
@@ -92,8 +100,8 @@
         
 		if(writerInput.readyForMoreMediaData){
             
-			CMTime frameTime = CMTimeMake(1, 10 );
-			CMTime lastTime=CMTimeMake(i, 10);
+			CMTime frameTime = CMTimeMake(1, fps );
+			CMTime lastTime=CMTimeMake(i, fps);
 			CMTime presentTime=CMTimeAdd(lastTime, frameTime);
 			
 			if (i >= [array count])
@@ -162,3 +170,8 @@
     
     return pxbuffer;
 }
+
+
+
+
+@end
