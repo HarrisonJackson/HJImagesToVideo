@@ -24,6 +24,8 @@
 +(void)saveVideoToPhotosWithImages:(NSArray *)images WithCallbackBlock:(void (^)(void))callbackBlock{
     NSString *tempPath = [NSHomeDirectory() stringByAppendingPathComponent:
                       [NSString stringWithFormat:@"temp.mp4"]];
+    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
+
     [HJImagesToVideo videoFromImages:images ToPath:tempPath WithFPS:10 WithCallbackBlock:^{
         UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
         callbackBlock();
@@ -33,6 +35,8 @@
 +(void)saveVideoToPhotosWithImages:(NSArray *)images withSize:(CGSize)size WithCallbackBlock:(void (^)(void))callbackBlock{
     NSString *tempPath = [NSHomeDirectory() stringByAppendingPathComponent:
                           [NSString stringWithFormat:@"temp.mp4"]];
+    [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
+
     [HJImagesToVideo videoFromImages:images ToPath:tempPath withSize:size WithFPS:10 WithCallbackBlock:^{
         UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
         callbackBlock();
