@@ -3,6 +3,8 @@ HJImagesToVideo
 
 Convert image array to mp4
 
+Feel free to use this in your projects - if you make any improvements submit a pull request!  It is still in progress.
+
 This helper class takes an array of UIImages and will convert them to an mp4 at your desired path, size, and framerate
 
 This is all you need!
