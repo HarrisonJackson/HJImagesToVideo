@@ -29,6 +29,8 @@
     [HJImagesToVideo videoFromImages:images ToPath:tempPath WithFPS:10 WithCallbackBlock:^{
         UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
         callbackBlock();
+        [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
+
     }];
     
 }
@@ -40,6 +42,8 @@
     [HJImagesToVideo videoFromImages:images ToPath:tempPath withSize:size WithFPS:10 WithCallbackBlock:^{
         UISaveVideoAtPathToSavedPhotosAlbum(tempPath, self, nil, nil);
         callbackBlock();
+        [[NSFileManager defaultManager] removeItemAtPath:tempPath error:NULL];
+
     }];
     
     callbackBlock();
