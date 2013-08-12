@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>273792B4-9EA8-431A-8CD0-0196CE839430</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ImageToVid</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0B8EF45E-ACA0-46B7-ABD1-ABFCD26960ED</key>
+		<string>ssh://github.com/MattFoley/HJImagesToVideo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ImageToVid/ImageToVid.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0B8EF45E-ACA0-46B7-ABD1-ABFCD26960ED</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/MattFoley/HJImagesToVideo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0B8EF45E-ACA0-46B7-ABD1-ABFCD26960ED</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0B8EF45E-ACA0-46B7-ABD1-ABFCD26960ED</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HJImagesToVideo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
