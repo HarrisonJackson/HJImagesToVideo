@@ -4,8 +4,6 @@
 
 Bin/appledoc \
 --project-name "$PROJECT" \
---project-company "Bluefin Payment Systems" \
---company-id com.bluefin \
 --output "$PROJECT_DIR"/Documentation \
 --logformat xcode \
 --exit-threshold 2 \
@@ -13,7 +11,6 @@ Bin/appledoc \
 --keep-undocumented-members \
 --keep-undocumented-objects \
 --ignore Bin \
---ignore BluefinTests \
 --ignore Documentation \
 --ignore Lib \
 --ignore .m \
