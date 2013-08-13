@@ -9,6 +9,7 @@
 #import "IMGViewController.h"
 #import "HJImagesToVideo.h"
 
+
 @interface IMGViewController ()
 
 @end
@@ -37,14 +38,14 @@
     
     [[NSFileManager defaultManager] removeItemAtPath:path error:NULL];
     
-    [HJImagesToVideo videoFromImages:testImageArray
-                              toPath:path
+    [HJImagesToVideo saveVideoToPhotosWithImages:testImageArray
                              withFPS:10
+                  animateTransitions:YES
                    withCallbackBlock:^(BOOL success) {
-                       
                        if (success) {
                            NSLog(@"Success");
                            [HJImagesToVideo saveVideoToPhotosWithImages:testImageArray
+                                                     animateTransitions:NO
                                                       withCallbackBlock:^(BOOL success) {
                                                           if (success) {
                                                               NSLog(@"Success");
