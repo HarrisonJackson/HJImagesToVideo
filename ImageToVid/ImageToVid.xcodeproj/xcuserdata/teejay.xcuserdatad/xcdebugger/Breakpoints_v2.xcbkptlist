@@ -20,12 +20,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HJImagesToVideo/HJImagesToVideo.m"
-            timestampString = "398025403.529352"
+            timestampString = "398105446.48875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "+videoFromImages:toPath:withFPS:withCallbackBlock:"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "+crossFadeImage:toImage:atSize:withAlpha:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HJImagesToVideo/HJImagesToVideo.m"
+            timestampString = "398105446.48875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "+writeImageAsMovie:toPath:size:fps:animateTransitions:withCallbackBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HJImagesToVideo/HJImagesToVideo.m"
+            timestampString = "398105446.48875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "+writeImageAsMovie:toPath:size:fps:animateTransitions:withCallbackBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
