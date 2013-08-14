@@ -10,9 +10,9 @@
 
 CGSize const DefaultFrameSize                             = (CGSize){480, 320};
 
-NSInteger const DefaultFrameRate                          = 3;
-NSInteger const TransitionFrameCount                      = 100;
-NSInteger const FramesToWaitBeforeTransition              = 80;
+NSInteger const DefaultFrameRate                          = 1;
+NSInteger const TransitionFrameCount                      = 50;
+NSInteger const FramesToWaitBeforeTransition              = 40;
 
 BOOL const DefaultTransitionShouldAnimate = YES;
 
@@ -179,6 +179,7 @@ BOOL const DefaultTransitionShouldAnimate = YES;
     NSDictionary *videoSettings = @{AVVideoCodecKey: AVVideoCodecH264,
                                     AVVideoWidthKey: [NSNumber numberWithInt:size.width],
                                     AVVideoHeightKey: [NSNumber numberWithInt:size.height]};
+    
     AVAssetWriterInput* writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
                                                                          outputSettings:videoSettings];
     
@@ -192,9 +193,10 @@ BOOL const DefaultTransitionShouldAnimate = YES;
     [videoWriter startWriting];
     [videoWriter startSessionAtSourceTime:kCMTimeZero];
     
-    CVPixelBufferRef buffer = NULL;
-    buffer = [HJImagesToVideo pixelBufferFromCGImage:[array[0] CGImage] size:CGSizeMake(480, 320)];
+    CVPixelBufferRef buffer;
     CVPixelBufferPoolCreatePixelBuffer(NULL, adaptor.pixelBufferPool, &buffer);
+    
+    CMTime presentTime = CMTimeMake(0, fps);
     
     int i = 0;
     while (1)
@@ -202,9 +204,7 @@ BOOL const DefaultTransitionShouldAnimate = YES;
         
 		if(writerInput.readyForMoreMediaData){
             
-			CMTime frameTime = CMTimeMake(1, fps);
-			CMTime lastTime = CMTimeMake(i, fps);
-			CMTime presentTime = CMTimeAdd(lastTime, frameTime);
+			presentTime = CMTimeMake(i, fps);
             
 			if (i >= [array count]) {
 				buffer = NULL;
@@ -212,14 +212,16 @@ BOOL const DefaultTransitionShouldAnimate = YES;
 				buffer = [HJImagesToVideo pixelBufferFromCGImage:[array[i] CGImage] size:CGSizeMake(480, 320)];
 			}
 			
-			
 			if (buffer) {
-				// append buffer
-                BOOL appendSuccess = [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
-				i++;
+                //append buffer
                 
+                BOOL appendSuccess = [HJImagesToVideo appendToAdapter:adaptor
+                                                          pixelBuffer:buffer
+                                                               atTime:presentTime
+                                                            withInput:writerInput];
                 NSAssert(appendSuccess, @"Failed to append");
-                if (shouldAnimateTransitions && array.count > i) {
+                
+                if (shouldAnimateTransitions && i + 1 < array.count) {
 
                     //Create time each fade frame is displayed
                     CMTime fadeTime = CMTimeMake(1, fps*TransitionFrameCount);
@@ -230,23 +232,27 @@ BOOL const DefaultTransitionShouldAnimate = YES;
                     }
                     
                     //Adjust fadeFrameCount so that the number and curve of the fade frames and their alpha stay consistant
-                    TransitionFrameCount -= FramesToWaitBeforeTransition;
+                    NSInteger framesToFadeCount = TransitionFrameCount - FramesToWaitBeforeTransition;
                     
                     //Apply fade frames
-                    for (double j = 1; j < TransitionFrameCount; j++) {
-                        buffer = [HJImagesToVideo crossFadeImage:[array[i-1] CGImage]
-                                                         toImage:[array[i] CGImage]
-                                                          atSize:CGSizeMake(480, 320)
-                                                       withAlpha:j/TransitionFrameCount];
+                    for (double j = 1; j < framesToFadeCount; j++) {
                         
+                        buffer = [HJImagesToVideo crossFadeImage:[array[i] CGImage]
+                                                         toImage:[array[i + 1] CGImage]
+                                                          atSize:CGSizeMake(480, 320)
+                                                       withAlpha:j/framesToFadeCount];
+                        
+                        BOOL appendSuccess = [HJImagesToVideo appendToAdapter:adaptor
+                                                                  pixelBuffer:buffer
+                                                                       atTime:presentTime
+                                                                    withInput:writerInput];
                         presentTime = CMTimeAdd(presentTime, fadeTime);
-                        appendSuccess = [HJImagesToVideo appendToAdapter:adaptor
-                                                             pixelBuffer:buffer
-                                                                  atTime:presentTime
-                                                               withInput:writerInput];
+                        
                         NSAssert(appendSuccess, @"Failed to append");
                     }
                 }
+                
+                i++;
 			} else {
 				
 				//Finish the session:
