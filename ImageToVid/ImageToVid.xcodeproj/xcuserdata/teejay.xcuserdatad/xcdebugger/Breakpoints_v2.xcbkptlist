@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HJImagesToVideo/HJImagesToVideo.m"
-            timestampString = "398105446.48875"
+            timestampString = "398134328.070254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "+crossFadeImage:toImage:atSize:withAlpha:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HJImagesToVideo/HJImagesToVideo.m"
-            timestampString = "398105446.48875"
+            timestampString = "398134328.070254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "+writeImageAsMovie:toPath:size:fps:animateTransitions:withCallbackBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HJImagesToVideo/HJImagesToVideo.m"
-            timestampString = "398105446.48875"
+            timestampString = "398134328.070254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "+writeImageAsMovie:toPath:size:fps:animateTransitions:withCallbackBlock:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HJImagesToVideo/HJImagesToVideo.m"
+            timestampString = "398134105.570801"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "+writeImageAsMovie:toPath:size:fps:animateTransitions:withCallbackBlock:"
             landmarkType = "5">
          </BreakpointContent>
