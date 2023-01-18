@@ -48,7 +48,5 @@ Example usage:
     }];
 ```
 
-Copyright 2013 Harrison Jackson
-http://harrisonjackson.us
 
 Feel free to use however you want - if you make any improvements submit a pull request!
